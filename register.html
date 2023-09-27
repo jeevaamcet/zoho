@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body
+        {
+            display: grid;
+            grid-template-rows: 10vh 70vh 10vh ;
+            grid-template-columns: 20% 60% 20%;
+            background-color: #eb1b8d;
+        }
+        .mother
+        {
+            grid-area: 2/2/3/3;
+            background-color: #40054e;
+            border-radius: 20px;
+            display: grid;
+            grid-template-rows: 50% 50%;
+            grid-template-columns: 50% 50%;
+        }
+        .left
+        {
+            grid-area: 1/1/3/2;
+            margin: 30px;
+            /* background-color: #efedf1; */
+            margin-right: 0;
+            border-radius: 20px;
+            display: grid;
+            grid-template-rows: 35% 60% 10%;
+            grid-template-columns: 100%;
+           
+            
+            /* width: 20px;
+            height: 20px; */
+        }
+        .right
+        {
+            grid-area:1/2/-1/-1 ;
+            background-color: #e3e3e7;
+            margin: 30px;
+            margin-left: 0;
+            display: grid;
+            grid-template-rows: 35% 60% 10%;
+            grid-template-columns: 100%;
+            padding: 20px;
+            border-radius: 20px;
+            /* width: 30px;
+            height: 30px; */
+        }
+        h3
+        {
+            color: #e3e3e7;
+            font-size: 40px;
+        }
+        .detail
+        {
+            display: flex;
+            flex-direction: column;
+            margin-right: 30px;
+            /* justify-content: space-between; */
+
+        }
+        .detail button
+        {
+            background-color: transparent;
+            padding: 15px;
+            justify-content: space-between;
+            text-align: left;
+            margin-top: 20px;
+            color: #e3e3e7;
+            border: none;
+            border-radius: 20px;
+
+        }
+        .detail button:hover
+        {
+            border: 1px solid hsl(305, 82%, 47%);
+            background-color: #8a0a7f;
+        }
+        .bottombutton
+        {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 20%;
+            margin-right: 20%;
+
+        }
+        .bottombutton img
+        {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        .bottombutton button
+        {
+            width: 20%;
+            height: 60%;
+            background-color: transparent;
+            border-radius: 50%;
+        }
+        .intrestbutton
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin: 10px;
+        }
+        .intrestbutton button
+        {
+            width: 7 0px;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            color: hwb(240 4% 95%);
+            background-color:transparent;
+        }
+        form
+        {
+            display: flex;
+            flex-direction: column;
+        }
+        form input{
+            padding: 20px;
+            border: none;
+            background-color: transparent;
+            border-bottom: 1px solid #70044c;
+        }
+        #send
+        {
+            justify-content: baseline;
+            margin-bottom: 20px;
+            width: 60%;
+            background-color: #70044c;
+            color: #e3e3e7;
+            border-radius: 10px;
+            
+        }
+        #send img
+        {
+            width: 10%;
+            padding-left: 10px;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="mother">
+        <div class="left">
+            <h3>Let's discuss <br>on something cool <br> together</h3>
+            <div class="detail">
+                <button>qertyuio@gmail.com</button>
+                <button>+123 456 789</button>
+                <button>123,street 456 House</button>
+            </div>
+            <div class="bottombutton">
+                <button><img src="./fb.png" ></button>
+                <button><img src="./tele.png" ></button>
+                <button><img src="./twitter.png" ></button>
+            </div>
+        </div>  
+        <div class="right">
+            <div class="intrested">
+                <p>i'm intrested in .....</p>
+                <div class="intrestbutton">
+                    <button>ui/ux design</button>
+                    <button>web design</button>
+                    <button>graphic design</button>
+                    <button>design system</button>
+                    <button>others</button>
+                </div>
+            </div>
+            <div class="form">
+                <form>
+                    <input type="text" placeholder="Your name">
+                    <input type="text"placeholder="Your Email">
+                    <input type="text"placeholder="Your message">
+                </form>
+            </div>
+            <button id="send"><img src="./tele.png">send message</button>
+        </div>
+    </div>
+</body>
+</html>
