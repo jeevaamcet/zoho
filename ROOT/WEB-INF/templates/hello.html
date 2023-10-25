@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello World</title>
+    <style>
+       
+        table{
+            border-collapse: collapse;
+        }
+        table th,td{
+            border: 2px solid blueviolet;
+        }
+    </style>
+</head>
+<body>
+    
+    <form action="/">
+        <input type="submit" value="Home">
+    </form>
+    
+    <div th:fragment="editcontact">
+        <form action="edit">
+            <input type="text" name="name" id="">
+            <input type="text" name="number">
+            <input type="submit">
+        </form>
+    </div>
+
+    </div>
+    <div th:fragment="fail">
+        <h2>There is no Contact in such name</h2>
+    </div>
+    <div th:fragment="success">
+        <h2>Successfully !!!</h2>
+    </div>
+</body>
+</html>
