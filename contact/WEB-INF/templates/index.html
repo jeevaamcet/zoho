@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Applicaion</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+
+    <div class="left" th:switch="${flag}">
+
+        <div th:case="true" th:insert="~{hello :: edit(${user})}"></div>
+        <div th:case="*" th:insert="~{hello :: create}"></div>
+        
+    </div>
+
+    <div class="right" >
+
+        <div class="h3">
+            <h3>Users Details</h3>
+        </div>
+        
+
+        <div class="table" th:switch="${token}">
+            <div class="note" th:case="true">There is NO Contact</div>
+            <table th:case="*" style="width: 96% ; height: 100%;" >
+
+                <tr>
+                    <th style="width: 15% ;">Name</th>
+                    <th style="width: 15% ;">Number</th>
+                    <th style="width: 15% ;">Email</th>
+                    <th style="width: 15% ;">Place</th>
+                    <th style="width: 40% ; height: 40%;">Action</th>
+                </tr>
+
+                <tr th:each="l:${list}">
+                    <td th:text="${l.value.name}"></td>
+                    <td th:text="${l.value.number}"></td>
+                    <td th:text="${l.value.email}"></td>
+                    <td th:text="${l.value.place}"></td>
+
+                    <td id="but">
+                        <form action="edit">
+                            <button name="button" th:value="${l.key}" id="img"  >
+                                <img src="https://www.svgrepo.com/show/146083/pencil-edit-button.svg" alt="">
+                            </button>
+                        </form>
+
+                        <form action="delete" method="post">
+                            <button name="button" th:value="${l.key}" id="img" onclick="return confirm('Are you confirm?')">
+                                <img src="https://as1.ftcdn.net/v2/jpg/01/43/11/20/1000_F_143112044_gPXDDV55GTU8LQcX9GMbbP2Ss83ORMoy.jpg" alt="">
+                            </button>
+                        </form>    
+                    </td> 
+                </tr>            
+            </table>
+        </div>
+    </div>
+</body>
+</html>

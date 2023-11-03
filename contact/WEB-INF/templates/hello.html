@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Resource</title>
+</head>
+<body>
+    <div th:fragment="edit(user)">
+
+            <div class="h3"><h3>Edit user</h3>
+            </div>
+
+            <form action="edit" method="post" id="edit">
+                <label for="">Name</label>
+                <input type="text" name="name" th:value="${user.name}" id="">
+                <label for="">Number</label>
+                <input type="text" name="number" th:value="${user.number}">
+                <label for="">Email</label>
+                <input type="text" name="email" id="" th:value="${user.email}">
+                <label for="">Place</label>
+                <input type="text" name="place" th:value="${user.place}">
+                <div>
+                    <button id="button" formaction="/" type="submit">Cancel</button>
+                    <button id="button" type="submit" formaction="edit">Edit</button>
+                </div>
+            </form>
+          
+    </div>
+    <div th:fragment="create">
+
+        <div class="h3"><h3>Create User</h3>
+        </div>
+
+        <form action="create" method="post">
+            <label for="">Name</label>
+            <input type="text" name="name" id="" placeholder="name" required>
+            <label for="">Number</label>
+            <input type="text" name="number"required placeholder="number">
+            <label for="">Email</label>
+            <input type="text" name="email" id="" placeholder="Email">
+            <label for="">Place</label>
+            <input type="text" name="place"required placeholder="place">
+            <input type="submit"value="Create"id="button">
+        </form>
+
+    </div>
+</body>
+</html>
