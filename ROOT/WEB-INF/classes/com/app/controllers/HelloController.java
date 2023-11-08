@@ -1,81 +1,68 @@
 package com.app.controllers;
 
 
-
+import java.sql.SQLException;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.app.resource.Option;
+import com.app.resource.Ques;
+import com.app.services.ContactService;
 
-import com.app.resource.Contact;
-import com.app.resource.User;
 
-// @ResponseBody
 @Controller
 public class HelloController {
+
+    @Autowired
+    private ContactService cs;
+
+
+    private static int num = 1;
+    public static int score = 0;
+    public HashMap<Integer,Ques> ques = new HashMap<>();
+    public HashMap<Integer,Option> opt = new HashMap<>(); 
     
-    // public HelloController() {
-    // }
 
-    @RequestMapping("/create")
-    public String createContact(Model model,@RequestParam("name") String name,@RequestParam("number") String num,@RequestParam("email") String email,@RequestParam("place") String place) {
-
-        Contact.list.add(new User(name,num,email,place));
-        
-        model.addAttribute("list", hp);
-
-        return "index";
-    }
-    @RequestMapping("/")
-    public String second(Model model ){
-
-        
-        
-        return "index";
-    }
-    // @RequestMapping("/contact")
-    // public String menu(Model model, @RequestParam("button") String button){
-
-        // Contact.button = button;
-        // if(button.equals("displaycontact")){
-        //     model.addAttribute("hp",Contact.hp);
-        //     model.addAttribute("button",button);
-        //     return "index";
-        // } else {
-        //     model.addAttribute("button",button);
-        //     return "index";
-        // }
-    // }
-    @RequestMapping("/edit")
-    public String edit(Model model,@RequestParam("name") String name,@RequestParam("number") String num){
-
-
-        if(Contact.hp.containsKey(name))
+    @RequestMapping("/verify")
+    public String verifyAnswer(Model model,
+                                @RequestParam("opt") String userAns) throws SQLException {
+        if(userAns.equals(cs.getQuesFromDb().get(num).getAnswer()))
         {
-            Contact.hp.put(name,num);
-            // model.addAttribute("flag","success");
-            model.addAttribute("button",Contact.button);
-            return "index" ;
+            score++;
+        }
+        num++;
+        if(ques.size() <= num)
+        {
+            model.addAttribute("Ques",ques.get(num));
+            model.addAttribute("opt",opt.get(num));
+            return "index";
         }
         else
         {
-            // model.addAttribute("flag","fail");
-            // model.addAttribute("button",Contact.button);
+            num = 0;
+            model.addAttribute("message","Game over");
+            model.addAttribute("flag",true);
+            model.addAttribute("score",score);
             return "index";
         }
     }
 
-    @RequestMapping("/delete")
-    public String delete(Model model,@RequestParam("button") ){
+    @RequestMapping("/")
+    public String home(Model model ) throws SQLException{
 
-        
-        
+        ques = cs.getQuesFromDb();
+        opt = cs.getOptFromDb();
+
+        model.addAttribute("Ques",ques.get(num));
+        model.addAttribute("opt",opt.get(num));
+
         return "index";
     }
-
     
 }

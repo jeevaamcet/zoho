@@ -1,130 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 10% 25% 5% 50% 10%;
-            grid-template-rows: 10% 45% 45%;
-            background-color: aqua;
-        }
-        .left{
-            background-color: #f4f8f8;
-            grid-area: 2/2/3/3 ;
-            display: flex;
-            /* justify-content: center; */
-            /* align-items: center; */
-            
-            flex-direction: column;
-        }
-        .h3{
-            background-color: rgb(20, 17, 160);
-            padding:  1px  1px 1px 30%;
-        }
-        td{
-            text-align: center;
-        }
-        .right{
-            grid-area: 2/4/5/4;
-            background-color: #f0f0f7;
-            height: fit-content;
-           
-        }
-        table, th, td {
-            border: 1px solid white;
-            border-collapse: collapse;
-        }
-        th, td {
-            background-color: transparent;
-        }
-        tr{
-            border-bottom: 2px solid rgb(20, 17, 160);
-        }
-        .left form{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: 30px;
-        }
-        input{
-            margin: 20px;
-        }
-
-        
-        #but{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-    </style>
+    <title>Quiz</title>
 </head>
 <body>
-    <div class="left">
-        <div>
-            <div class="h3"><h3>Create User</h3></div>
-            <form action="create">
-                <label for="">Name</label>
-                <input type="text" name="name" id="">
-                <label for="">Number</label>
-                <input type="text" name="number">
-                <label for="">Email</label>
-                <input type="text" name="email" id="">
-                <label for="">Place</label>
-                <input type="text" name="place">
-                <input type="submit">
-            </form>
-        </div>
-        
-        
-
+    <h2 th:text="${Ques.question}"></h2>
+    <form action="verify" id="verify">
+        <label for="" th:text="${opt.opt1}">
+            <input type="radio" name="opt" th:value="${opt.opt1}">
+        </label>
+        <label for="" th:text="${opt.opt2}">
+            <input type="radio" name="opt" th:value="${opt.opt2}">
+        </label>
+        <label for="" th:text="${opt.opt3}">
+            <input type="radio" name="opt" th:value="${opt.opt3}">
+        </label>
+        <label for="" th:text="${opt.opt4}">
+            <input type="radio" name="opt" th:value="${opt.opt4}">
+        </label>
+    </form>
+    <div>
+        <button type="submit" name="submit" th:value="${id}" form="verify">Submit</button>
     </div>
-    <div class="right" >
-        <div class="h3"><h3>Users Details</h3></div>
-        <table style="width: 100% ;" >
-            <tr>
-                <th style="width: 15% ;">Name</th>
-                <th style="width: 15% ;">Number</th>
-                <th style="width: 15% ;">Email</th>
-                <th style="width: 15% ;">Place</th>
-                <th style="width: 40% ;">Action</th>
-            </tr>
-            <tr th:each="l, i:${list}">
-                <td th:text="${l.name}"></td>
-                <td th:text="${l.number}"></td>
-                <td th:text="${l.email}"></td>
-                <td th:text="${l.place}"></td>
-                <td id="but">
-                    <form action="edit">
-                        <button th:value="${i.index}">Edit</button>
-                    </form>
-                    <form action="delete">
-                        <button th:value="${i.index}">Delete</button>
-                    </form>    
-                </td> 
-            </tr>
-            <!-- <tr>
-                <td>aakash</td>
-                <td>12345</td>
-                <td>
-                    <form action="contact">
-                        <input type="submit" name="button" value="editcontact" id="">
-                    </form>
-                    <form action="delete">
-                        <input type="submit" name="button"  th:value="delete" id="">
-                    </form>
-                </td>
-                
-            </tr> -->
-            
-        </table>
-        
+    <div th:if="${flag} == true" >
+        <h1 th:text="${message}"></h1>
+        <h2 th:text="|Your score is ${score} !!! |"></h2>
     </div>
-    
 </body>
 </html>

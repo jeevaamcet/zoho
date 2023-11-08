@@ -1,8 +1,9 @@
-package com.app.config;
+
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+import javax.swing.Spring;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -20,6 +21,7 @@ public class SpringWebInitializer implements WebApplicationInitializer {
         root.register(com.app.config.WebAppConfig.class);
         root.setConfigLocation("com.app.config");
         sc.addListener(new ContextLoaderListener(root));
+       
 
         ServletRegistration.Dynamic appServlet = sc.addServlet("mvc",
                 new DispatcherServlet(new GenericWebApplicationContext()));

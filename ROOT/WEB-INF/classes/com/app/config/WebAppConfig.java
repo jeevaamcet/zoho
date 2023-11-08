@@ -3,6 +3,7 @@ package com.app.config;
 
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -38,13 +39,20 @@ public class WebAppConfig implements WebMvcConfigurer {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
-        // viewResolver.setPrefix("/WEB-INF/views/");
-        // viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
+    // @Override
+    // public void addViewControllers(ViewControllerRegistry registry) {
+    //     registry.addViewController("/").setViewName("index");
+    // }
     
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-    }
+    
+  
+    // @Override
+    // public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    //     registry.addResourceHandler("/resources/**")
+    //             .addResourceLocations("/WEB-INF/classes/com/app/resource/static/");
+    // }
+
 }
